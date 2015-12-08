@@ -17,4 +17,16 @@ feature 'Creating posts' do
     expect(page).to have_css('img[src*="coffee.jpg"]')
   end
   
+  it 'needs an image to create a post' do
+    # visit root route
+    # click the 'New Post' link
+    # fill in the caption field (without touching the image field)
+    # click the 'Create Post' button
+    # expect the page to say, "Halt, you fiend! You need an image to post here!"
+    visit '/'
+    click_link 'New Post'
+    fill_in 'Caption', with: 'No picture because YOLO'
+    click_button 'Create Post'
+    expect(page).to have_content('You need an image to post here!')
+  end
 end
